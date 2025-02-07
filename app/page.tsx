@@ -5,6 +5,7 @@ import JSZip from 'jszip';
 import mammoth from "mammoth";
 import React, { useRef, ChangeEvent } from 'react';
 
+
 GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs"
 
 
@@ -73,6 +74,7 @@ export default function Home(){
           for (let i = 1; i <= numPages; i++) {
             const page = await pdf.getPage(i);
             const textContent = await page.getTextContent();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             pdfTextArray.push(textContent.items.map((item: any) => item.str).join(" "));
           }
           resultText = pdfTextArray.join("\n");

@@ -19,6 +19,8 @@ export default function Page() {
     }
   };
 
+   console.log(result)
+
   const processFile = (file: File) => {
     const fileReader = new FileReader();
     fileReader.addEventListener('loadstart', () => setStatus('Start Loading'));
