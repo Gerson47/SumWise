@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --border: 3px solid rgb(0, 0, 10);
+  --borderRadius: 25px;
+  --font: Arial, Helvetica, sans-serif;
+  --fontSize: 25px;
+  --fontWeight: bold;
+  --buttonBackground: black;
+  --buttonTextColor: white;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.buttons{
+  border-radius: 10px;
+  border: 2px solid black;
+  width: auto;
+}
+
+.topContainer{
+  display: block;
+  height: auto;
+  min-height: 100px;
+  width: auto;
+  margin: 20px 20px;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+}
+
+.DropContainer > *, 
+.results > *,
+.chatContainer > *
+{
+  flex: 1;
+  max-width: auto;
+  min-width: 250px;
+
+}
+
+.DropContainer, 
+.results, 
+.chatContainer, 
+.TopColor
+{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
+ 
+}
+
+.topLabel,
+#AskAILabel
+{
+  font-family: var(--font);
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
+  margin-top: 0%;
+}
+
+.filePreviewContainer{
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  height: 25vh;
+  min-height: 15vh;
+  text-align: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 20px;
+  flex: 1;
+  
+}
+
+.PreviewButton{
+  font-size: 20px;
+}
+
+.HomeButton{
+  font-size: 20px;
+  background-color: var(--buttonBackground);
+  color: var(--buttonTextColor);
+  border-radius: 10px;
+  height: 25px;
+  width: 100px;
+}
+.summarizedContainer, 
+.inputContainer,
+.outputContainer
+{
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  height: 350px;
+  margin: 10px 30px;
+  padding: 0%;
+ 
+}
+
+.chatContainer{
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.TopColor{
+  height: 30px;
+  width: 100%;
+  background-color: aqua;
+  border-radius: 25px 25px 0px 0px;
+}
+
+.inputContainer{
+  height: auto;
+  max-width: 400px;
+  text-justify: auto;
+}
+
+.suggestButton{
+  border: var(--border);
+  width: 90%;
+  padding: 7px;
+  font-size: 12px;
+}
+
+#AskAILabel{
+  font-size: 20px;
+}
+
+#inputText,
+#outputText{
+  width: 80%;
+  height: 250px;
+  padding: 10px;
+  font-family: var(--font);
+  font-size: 18px;
+  overflow-wrap: break-word;
+  border: var(--border);
+  border-radius: var(--borderRadius); 
+}
+
+#outputTextContainer,
+#SummaryTextContainer,
+#KeyTextContainer,
+#DefinitionTextContainer,
+#PracticeTextContainer{
+  padding: 8px;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  width: 90%;
+  overflow-y: auto;
+}
+
+#outputText,
+#SummaryText,
+#KeyText,
+#DefinitionText,
+#PracticeText{
+  width: 90%;
+  height: 270px;
+  border: transparent;
+  font-family: var(--font);
+  align-items: flex-start;
+  text-align: justify;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+}
+
+#outputTextContainer::-webkit-scrollbar,
+#SummaryTextContainer::-webkit-scrollbar,
+#KeyTextContainer::-webkit-scrollbar,
+#DefinitionTextContainer::-webkit-scrollbar,
+#PracticeTextContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+#outputTextContainer::-webkit-scrollbar-thumb,
+#SummaryTextContainer::-webkit-scrollbar-thumb,
+#KeyTextContainer::-webkit-scrollbar-thumb,
+#DefinitionTextContainer::-webkit-scrollbar-thumb,
+#PracticeTextContainer::-webkit-scrollbar-thumb,
+#SummaryTextContainer::-webkit-scrollbar-thumb {
+  background-color: rgb(163, 163, 163);
+  border-radius: 30px;
+}
+
+#outputText{
+  height: 500px;
+}
+
+.outputContainer{
+  height: 600px;   
+}
+
+.loading{
+  height: 70px;
+  width: 80px;
+  border: 2px solid gray;
+  border-radius: var(--borderRadius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingText{
+  font-weight: bold;
+  color: skyblue;
+}
+
+.TopOutputTextContainer,
+.ResultsContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+

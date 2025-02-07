@@ -1,0 +1,19 @@
+
+:root{
+    --border: 3px solid rgb(0, 0, 10);
+    --borderRadius: 25px;
+    --font: Arial, Helvetica, sans-serif;
+    --fontSize: 25px;
+    --fontWeight: bold;
+    --buttonBackground: black;
+    --buttonTextColor: white;
+  }
+
+.ToSummarizerButton{
+    font-size: 20px;
+    background-color: var(--buttonBackground);
+    color: var(--buttonTextColor);
+    border-radius: 10px;
+    height: 25px;
+    width: 100px;
+  }
