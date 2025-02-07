@@ -1,11 +1,9 @@
 "use client";
-import { useState,useEffect, FormEvent } from "react";
-import Link from 'next/link';
+import { useState } from "react";
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import JSZip from 'jszip';
 import mammoth from "mammoth";
 import React, { useRef, ChangeEvent } from 'react';
-import { json } from "stream/consumers";
 
 GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs"
 
@@ -22,9 +20,7 @@ export default function Home(){
   const [practiceTests, setPracticeTests] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState(false);
-  const [question1, setQuestion1] = useState("");
-  const [question2, setQuestion2] = useState("");
-  const [question3, setQuestion3] = useState("");
+
   const [questions, setQuestions] = useState<string[]>([]);
   
   const [status, setStatus] = useState<string>('');
