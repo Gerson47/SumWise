@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     const keyTakeaways = sections[1] || "Key takeaways not available";
     const definitions = sections[2] || "Definitions not available";
     const practiceTests: string[] = [];
-      for (let i = 3; i < 8; i++) {
+      for (let i = 3; i < sections.length; i++) {
         const thePracticeTests = sections[i] + ("\n\n") || "Practice tests not available";
         practiceTests.push(thePracticeTests);
       }
