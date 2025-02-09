@@ -146,8 +146,6 @@ export default function Home(){
 
     };
 
-    
-
     // const numberSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     //   e.preventDefault();
     //   if (!error && number !== "" && summaryNumber !== "") {
