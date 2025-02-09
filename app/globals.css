@@ -66,10 +66,32 @@ body{
   margin-top: 0%;
 }
 
+.preferenceDIv{
+  display: block;
+
+}
+
+.preference{
+  font-size: 12px;
+}
+
+
+#summary,
+#keytakeaway,
+#definiton,
+#practice{
+  border: var(--border);
+  width: 35px;
+  text-align: center;
+}
+
+#summary{
+  width: 50px;
+}
 .filePreviewContainer{
   border: var(--border);
   border-radius: var(--borderRadius);
-  height: 25vh;
+  height: auto;
   min-height: 15vh;
   text-align: center;
   gap: 20px;

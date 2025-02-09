@@ -12,6 +12,12 @@ GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.1
 export default function Home(){
   
   let resultText = ("")
+  const [number, setNumber] = useState<string>("5");
+  const [definitionNumber, setdefinitionNumber] = useState<string>("5");
+  const [practiceNumber, setpracticeNumber] = useState<string>("5");
+  const [summaryNumber, setSummaryNumber] = useState<string>("50");
+  const [error, setError] = useState<string>("");
+  const [summaryError, setSummaryError] = useState<string>("");
   const [text, setText] = useState ("");
   const [userInput, setUserInput] = useState("");
   const [response, setResponse] = useState("");
@@ -34,6 +40,120 @@ export default function Home(){
         processFile(file);
       }
     };
+
+    const handleSummaryNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setSummaryNumber(value);
+      console.log(value);
+
+      const numValue = Number(value)
+
+     if(numValue < 50){
+      setSummaryError("Summary words must be greater than 50.");
+      }
+
+      else if (numValue > 1000){
+        setSummaryError("Summary words must be less than 1000.");
+      }
+
+      else if (isNaN(numValue)){
+        setSummaryError("Invalid Input. Please Enter a valid Number.")
+      }
+
+      else {
+        setSummaryError("");
+        setSummaryNumber(value);
+        console.log(value) 
+      }
+
+    };
+
+    const handleNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setNumber(value);
+
+      const numValue = Number(value)
+
+     if(numValue < 1){
+        setError("Number must be greater than zero.");
+      }
+
+      else if (numValue > 99){
+        setError("Number must be less than 100.");
+      }
+
+      else if (isNaN(numValue)){
+        setError("Invalid Input. Please Enter a valid Number.")
+      }
+
+      else {
+        setError("");
+        setNumber(value);
+        console.log(value)
+      }
+
+    };
+
+    const handleDefintionNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setdefinitionNumber(value);
+
+      const numValue = Number(value)
+
+     if(numValue < 1){
+        setError("Number must be greater than zero.");
+      }
+
+      else if (numValue > 99){
+        setError("Number must be less than 100.");
+      }
+
+      else if (isNaN(numValue)){
+        setError("Invalid Input. Please Enter a valid Number.")
+      }
+
+      else {
+        setError("");
+        setdefinitionNumber(value);
+        console.log(value)
+      }
+
+    };
+
+    const handlePracticeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setpracticeNumber(value);
+
+      const numValue = Number(value)
+
+     if(numValue < 1){
+        setError("Number must be greater than zero.");
+      }
+
+      else if (numValue > 99){
+        setError("Number must be less than 100.");
+      }
+
+      else if (isNaN(numValue)){
+        setError("Invalid Input. Please Enter a valid Number.")
+      }
+
+      else {
+        setError("");
+        setpracticeNumber(value);
+        console.log(value)
+      }
+
+    };
+
+    
+
+    // const numberSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //   e.preventDefault();
+    //   if (!error && number !== "" && summaryNumber !== "") {
+    //     console.log("Submitted number:", number);
+    //   }
+    // };
   
     const processFile = (file: File) => {
       const fileReader = new FileReader();
@@ -133,7 +253,10 @@ export default function Home(){
               body: JSON.stringify(
                 { 
                   message: resultText,
-                  
+                  summaryNumber: summaryNumber,
+                  keytakeaway: number,
+                  definitionNumber: definitionNumber,
+                  practiceNumber: practiceNumber,
                   context: userInput,
                 }),
             })
@@ -194,6 +317,12 @@ export default function Home(){
         fileReader.readAsArrayBuffer(file);
         console.log(resultText);
       }
+      // else if (fileExtension === "mp3" || fileExtension === "wav"){
+        
+      //   setText(resultText);
+      //   fileReader.readAsDataURL(file);
+      //   console.log(transcription);
+      // }
     }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -258,6 +387,37 @@ export default function Home(){
       <div className="topContainer">
         <div className="DropContainer">
           <div className="filePreviewContainer">
+
+            <br/>
+                    <label className="preference">Summary no. of words </label>
+                    <input onChange={handleSummaryNumber} min="50" max="999" value={summaryNumber} type="number" id="summary" name="summary" />
+                    <label className="preference"> Key Takeaways no. </label>
+                    <input onChange={handleNumber} min="1" max="99" value={number} type="number" id="keytakeaway" name="keytakeaway" />
+                    <label className="preference"> Definition of Terms no. </label>
+                    <input onChange={handleDefintionNumber} min="1" max="99" value={definitionNumber} type="number" id="definiton" name="definiton" />
+                    <label className="preference"> Practice Test no. </label>
+                    <input onChange={handlePracticeNumber} min="1" max="99" value={practiceNumber} type="number" id="practice" name="practice" />
+
+                    {error && 
+                      <p className="text-red-500">{error}</p>
+                    }
+                    {summaryError &&
+                      <p className="text-red-500">{summaryError}</p>
+
+                    }
+                    
+                      {/* <button
+                        type="submit"
+                        disabled={!!error || number === "" || summaryNumber === ""}
+                        className={`px-4 py-2 rounded text-white ${
+                          error || number === "" || summaryNumber === "" ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+                        }`}
+                      >
+                      Submit
+                    </button> */}
+            
+                  <br/><br/>
+
             <p className="topLabel">Preview File/Website</p>
             <button 
               id="PreviewButton"
@@ -284,10 +444,10 @@ export default function Home(){
                   </progress>
                 )}
               </div>  
-
               <br />
               
-          </div>
+              </div>
+
         </div>
       </div>
 
@@ -402,8 +562,6 @@ export default function Home(){
                       </button>
                     ))}
                     </div>
-                    
-                
 
             </form>
        

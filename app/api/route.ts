@@ -6,7 +6,7 @@ const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { message, context } = body;
+    const { message, context, summaryNumber, keytakeaway, definitionNumber, practiceNumber } = body;
 
     if (!message) {
       return NextResponse.json(
@@ -20,13 +20,13 @@ export async function POST(request: Request) {
       systemInstruction:  
                         `You are a summarizer assistant. Your tasks are:
                           1. Analyze the given text ${message} and complete the following tasks (THIS IS VERY IMPORTANT):
-                            - Provide a summary.
-                            - List key takeaways. (JUST PUT THE KEY TAKEAWAYS IN ONE SECTION)
-                            - Define 5 important terms. (JUST PUT THE TERMS IN ONE SECTION)
-                            - Generate 5 practice test questions with choices and answers.
+                            - Provide a summary with this number of words: ${summaryNumber}.
+                            - List ${keytakeaway} key takeaways. (JUST PUT THE KEY TAKEAWAYS IN ONE SECTION)
+                            - Define ${definitionNumber} important terms. (JUST PUT THE TERMS IN ONE SECTION)
+                            - Generate ${practiceNumber} practice test questions with choices and answers.
                           2. If the user asks a question using this ${context}, respond directly to the question and skip tasks 1-4. 
                           The output should look like this and dont bold the terms.
-                          - Summary
+                          - Summary ${summaryNumber} words.
                           - Key Takeaways (DO NOT SEPERATE EACH KEY TAKEAWAYS IN ANOTHER SECTION JUST PUT IT IN ONE SECTION. put in numeric order.)
                           - Important terms (JUST PUT THE TERMS IN ONE SECTION. do not bold the terms, define each term, put in numeric order.)
                           - Practice tests (5 practice tests with choices and answers.)
@@ -66,6 +66,7 @@ export async function POST(request: Request) {
         topP: 0.1,
       }
     });
+    
 
     let response = "";
     for await (const chunk of chatCompletion.stream) {
